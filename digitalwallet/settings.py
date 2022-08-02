@@ -83,7 +83,7 @@ DATABASES = {
 DATABASES={
      'default':{ 
          'ENGINE':'django.db.backends.postgresql',
-          'NAME':'myprojects',
+          'NAME':'mollen',
           'USER':'myprojectuser',
           'PASSWORD':'wambui',
           'HOST':'localhost',

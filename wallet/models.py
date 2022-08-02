@@ -1,5 +1,6 @@
 from locale import currency
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Customer(models.Model):
@@ -9,87 +10,98 @@ class Customer(models.Model):
     email=models.EmailField
     phone_number=models.CharField
     age=models.PositiveSmallIntegerField
+    GENDER_CHOICE = (("M","Male"),("F","Female"))
+    gender=models.CharField(max_length=1,choices=GENDER_CHOICE,null=True)
+    pin=models.CharField(max_length=8,null=True)
+    id_number=models.CharField(max_length=10,null=True)
+    nationality=models.CharField(max_length=20,null=True)
+    occupation=models.CharField(max_length=10,null=True)
+    signature=models.ImageField
+
+class Currency(models.Model):
+    amount=models.IntegerField()
+    origin_country=models.CharField(max_length=10,null=True)
 
 class Wallet(models.Model) :
-    balance=models.IntegerField
-    date_created=models.DateTimeField
-    Customer=models.ForeignKey
-    currency=models.ForeignKey
-    pin=models.PositiveSmallIntegerField
-    isActive=models.BooleanField
+    balance=models.IntegerField()
+    # currency=models.ForeignKey('Currency',on_delete=models.CASCADE,related_name='Wallet_currency')
+    customer=models.ForeignKey('Customer',on_delete=models.CASCADE,related_name='Wallet_customer')
+    date_created=models.DateTimeField()
+    pin=models.CharField(max_length=8,null=True)
+
 
 
 class Account(models.Model) :
-    account_name=models.IntegerField
-    balance=models.IntegerField
-    Wallet=models.ForeignKey
+    account_type=models.CharField(max_length=15,null=True)
+    balance=models.PositiveIntegerField()
+    account_name=models.CharField(max_length=20,null=True)
+    wallet=models.ForeignKey('Wallet',on_delete=models.CASCADE,related_name='Account_wallet')
 
 
 class Transaction(models.Model) :
-    transaction_code=models.CharField
-    Wallet=models.ForeignKey
-    transaction_amount=models.IntegerField
-    transaction_number=models.IntegerField
-    transaction_type=models.CharField
-    date_time=models.DateTimeField
-    origin_account=models.ForeignKey
-    destination_account=models.ForeignKey
-    isActive=models.BooleanField
+    wallet=models.ForeignKey('Wallet',on_delete=models.CASCADE,related_name='Transaction_wallet')
+    transaction_amount=models.IntegerField()
+    transaction_type=models.CharField(max_length=15,null=True)
+    transaction_charge=models.IntegerField()
+    transaction_date=models.DateTimeField(default=timezone.now)
+    receipt=models.ForeignKey('Receipt',on_delete=models.CASCADE,related_name='Transaction_receipt')
+    origin_account=models.ForeignKey('Account',on_delete=models.CASCADE,related_name='Transaction_origin_account')
+    destination_account=models.ForeignKey('Account',on_delete=models.CASCADE,related_name='Transaction_destination_account')
 
 
 class Card(models.Model)  :
-    card_number=models.IntegerField
-    card_name=models.CharField
-    date_issued=models.DateTimeField
-    card_type=models.CharField
-    expiry_date=models.DateTimeField
-    security_code=models.IntegerField
-    Account=models.ForeignKey  
-    issuer=models.CharField
+    date_issued=models.DateTimeField(default=timezone.now)
+    card_name=models.CharField(max_length=15,null=True)
+    card_number=models.IntegerField()
+    card_type=models.CharField(max_length=15,null=True)
+    expiry_date=models.DateTimeField(default=timezone.now)
+    card_status=models.CharField(max_length=15,null=True)
+    security_code=models.IntegerField()
     signature=models.ImageField
+    wallet=models.ForeignKey('Wallet',on_delete=models.CASCADE,related_name='Card_wallet')
+    account=models.ForeignKey('Account',on_delete=models.CASCADE,related_name='Card_account')
+    issuer=models.CharField(max_length=15,null=True)
 
 
 class ThirdParty(models.Model)  :
-      name=models.CharField
-      currency=models.CharField
-      transaction_cost=models.IntegerField
-      Account=models.ForeignKey
+    account=models.ForeignKey('Account',on_delete=models.CASCADE,related_name='Thirdparty_account')
+    name=models.CharField(max_length=15,null=True)
+    thirdparty_id=models.IntegerField()
+    phone_number=models.IntegerField()
 
 class Notifications(models.Model) :
-     description=models.CharField
-     title=models.CharField
-     receipt=models.ForeignKey
-     status=models.BooleanField
-     date_time=models.DateTimeField
+    notifications_id=models.IntegerField()
+    name=models.CharField(max_length=15,null=True)
+    status=models.CharField(max_length=15,null=True)
+    date_and_time=models.DateTimeField(default=timezone.now)
+    receipt=models.ForeignKey('Receipt',on_delete=models.CASCADE,related_name='Notifications_receipt')
 
 
 class Receipt(models.Model):
-    receipt_type=models.CharField
-    receipt_date=models.DateTimeField
-    bill_number=models.IntegerField
-    receipt_file=models.FileField
-    transaction=models.IntegerField
+    receipt_type=models.CharField(max_length=15,null=True)
+    receipt_date=models.DateField(default=timezone.now)
+    receipt_file=models.FileField()
+    total_amount=models.IntegerField()
+    # transaction=models.ForeignKey('Transaction',on_delete=models.CASCADE,related_name='Receipt_transaction')
 
 class  Loan(models.Model):
-    loan_id=models.IntegerField
-    purpose=models.CharField
-    amount=models.IntegerField
-    name=models.CharField
-    loan_status=models.CharField
-    date_issued=models.DateTimeField
-    Wallet=models.ForeignKey
-    interest_rate=models.IntegerField
-    payment_due_date=models.DateTimeField
-    loan_balance=models.IntegerField
-    guarantor=models.ForeignKey
-
+    loan_number=models.IntegerField()
+    loan_type=models.CharField(max_length=15,null=True)
+    amount=models.IntegerField()
+    date_and_time=models.DateTimeField(default=timezone.now)
+    wallet=models.ForeignKey('Wallet',on_delete=models.CASCADE,related_name='Loan_wallet')
+    interest_rate=models.IntegerField()
+    guarantor=models.ForeignKey('Customer',on_delete=models.CASCADE,related_name='Loan_guarantor')
+    pay_due_date=models.DateTimeField(default=timezone.now)
+    loan_balance=models.IntegerField()
 
 class Reward(models.Model):
-    receipient=models.ForeignKey
-    date_of_reward=models.DateTimeField
-    points=models.BigIntegerField
-    transaction=models.ForeignKey
-
+    transaction=models.ForeignKey('Transaction',on_delete=models.CASCADE,related_name='Reward_transaction')
+    date_and_time=models.DateTimeField(default=timezone.now)
+    customer_id=models.IntegerField()
+    GENDER_CHOICES=(("M","Male"),("F","Female"))
+    gender=models.CharField(max_length=1,choices=GENDER_CHOICES,null=True)
+    bonus=models.IntegerField()
 
 
 

@@ -6,13 +6,13 @@ from django.utils import timezone
 class Customer(models.Model):
     first_name=models.CharField(max_length=15)
     last_name=models.CharField(max_length=15)
-    adress=models.TextField
-    email=models.EmailField
-    phone_number=models.CharField
-    age=models.PositiveSmallIntegerField
+    adress=models.TextField(null=True)
+    email=models.EmailField(null=True)
+    phone_number=models.CharField(max_length=10,null=True)
+    age=models.PositiveSmallIntegerField(null=True)
     GENDER_CHOICE = (("M","Male"),("F","Female"))
     gender=models.CharField(max_length=1,choices=GENDER_CHOICE,null=True)
-    pin=models.CharField(max_length=8,null=True)
+    pin=models.CharField(max_length=4,null=True)
     id_number=models.CharField(max_length=10,null=True)
     nationality=models.CharField(max_length=20,null=True)
     occupation=models.CharField(max_length=10,null=True)
@@ -85,6 +85,8 @@ class Receipt(models.Model):
     # transaction=models.ForeignKey('Transaction',on_delete=models.CASCADE,related_name='Receipt_transaction')
 
 class  Loan(models.Model):
+
+    
     loan_number=models.IntegerField()
     loan_type=models.CharField(max_length=15,null=True)
     amount=models.IntegerField()

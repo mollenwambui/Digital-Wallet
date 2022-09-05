@@ -86,7 +86,6 @@ class Receipt(models.Model):
 
 class  Loan(models.Model):
 
-    
     loan_number=models.IntegerField()
     loan_type=models.CharField(max_length=15,null=True)
     amount=models.IntegerField()

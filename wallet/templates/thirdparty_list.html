@@ -1,0 +1,24 @@
+<table>
+    <th>   
+   <td>Account</td>
+   <td>Name</td>
+   <td>Thirdparty Id</td>
+   <td>Phone Number </td>
+  
+   
+    </th>
+   
+   {%for thirdparty in thirdparties%}
+   <tr>
+       <td> {{thirdparty.account}} </td>
+       td> {{thirdparty.name}} </td>
+       td> {{thirdparty.thirdparty_id}} </td>
+       td> {{thirdparty.phone_number}} </td>
+       
+       
+   
+   </tr>   
+   {% endfor %}
+    </table>
+   
+   

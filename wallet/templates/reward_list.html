@@ -1,0 +1,31 @@
+<table>
+    <th>   
+   <td>Transaction</td>
+   <td>Date and Time </td>
+   <td>Customer Id</td>
+   <td>Gender</td>
+   <td>Bonus</td>
+  
+
+    </th>
+   
+   {%for reward in reward%}
+   <tr>
+       <td> {{reward.transaction}} </td>
+       <td> {{reward.date_and_time}} </td>
+       <td> {{reward.customer_id}} </td>
+       <td> {{reward.gender}} </td>
+       <td> {{reward.bonus}} </td>
+       
+       
+       
+       
+       
+  
+   
+   
+   </tr>   
+   {% endfor %}
+    </table>
+   
+   

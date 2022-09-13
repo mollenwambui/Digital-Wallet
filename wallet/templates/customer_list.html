@@ -1,0 +1,56 @@
+<style>
+    #mytable {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      #mytable td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      {% comment %} #staffInfo tr:nth-child(even){background-color: #C5B4E3;}
+      #staffInfo tr:{background-color: #C5B4E3;} {% endcomment %}
+      #mytable tr:hover {background-color: #C5B4E3;}
+      #mytable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #800080;
+        color: white;
+      }
+  </style>
+
+<table id="mytable">
+ <th>   
+<td>First Name </td>
+<td>Last Name </td>
+<td>Adress</td>
+<td>Email</td>
+<td>Phone Number</td>
+<td>Age</td>
+<td>Gender</td>
+<td>Pin</td>
+<td>Id Number</td>
+<td>Nationality</td>
+<td>Occupation</td>
+ </th>
+
+{%for customer in customers%}
+<tr>
+    <td> {{customer.first_name}} </td>
+    <td> {{customer.age}} </td>
+    <td> {{customer.adress}} </td>
+    <td> {{customer.email}} </td>
+    <td> {{customer.phone_number}} </td>
+    <td> {{customer.age}} </td>
+    <td> {{customer.gender}} </td>
+    <td> {{customer.pin}} </td>
+    <td> {{customer.id_number}} </td>
+    <td> {{customer.nationality}} </td>
+    <td> {{customer.occupation}} </td>
+
+
+</tr>   
+{% endfor %}
+ </table>
+

@@ -1,0 +1,25 @@
+<table>
+    <th>   
+   <td>Receipt Type</td>
+   <td>Receipt Date </td>
+   <td>Receipt File</td>
+   <td>Total Amount</td>
+   
+   
+    </th>
+   
+   {%for receipt in receipts%}
+   <tr>
+       <td> {{receipt.receipt_type}} </td>
+       <td> {{receipt.receipt_date}} </td>
+       <td> {{receipt.receipt_file}} </td>
+       <td> {{receipt.receipt_amount}} </td>
+     
+     
+      
+   
+   </tr>   
+   {% endfor %}
+    </table>
+   
+   

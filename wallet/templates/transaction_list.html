@@ -1,14 +1,36 @@
-table>
-    <th>   
-   <td>Wallet</td>
-   <td>Transaction amount</td>
-   <td>Transaction Type</td>
-   <td>Transaction Charge</td>
-   <td>Transaction Date</td>
-   <td>Receipt</td>
-   <td>Origin Account</td>
-   <td>Destination Account</td>
-    </th>
+<style>
+    #mytable {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      #mytable td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      {% comment %} #staffInfo tr:nth-child(even){background-color: #C5B4E3;}
+      #staffInfo tr:{background-color: #C5B4E3;} {% endcomment %}
+      #mytable tr:hover {background-color:pink;}
+      #mytable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #AA336A;
+        color: white;
+      }
+</style>
+
+<table id="mytable">
+    <tr>   
+   <th>Wallet</th>
+   <th>Transaction amount</th>
+   <th>Transaction Type</th>
+   <th>Transaction Charge</th>
+   <th>Transaction Date</th>
+   <th>Receipt</th>
+   <th>Origin Account</th>
+   <th>Destination Account</th>
+    </tr>
    
    {%for transaction in transactions%}
    <tr>

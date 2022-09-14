@@ -10,30 +10,30 @@
       }
       {% comment %} #staffInfo tr:nth-child(even){background-color: #C5B4E3;}
       #staffInfo tr:{background-color: #C5B4E3;} {% endcomment %}
-      #mytable tr:hover {background-color: #C5B4E3;}
+      #mytable tr:hover {background-color:pink;}
       #mytable th {
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-        background-color: #800080;
+        background-color: #AA336A;
         color: white;
       }
-  </style>
+</style>
 
 <table id="mytable">
- <th>   
-<td>First Name </td>
-<td>Last Name </td>
-<td>Adress</td>
-<td>Email</td>
-<td>Phone Number</td>
-<td>Age</td>
-<td>Gender</td>
-<td>Pin</td>
-<td>Id Number</td>
-<td>Nationality</td>
-<td>Occupation</td>
- </th>
+ <tr>   
+<th>First Name </th>
+<th>Last Name </th>
+<th>Adress</th>
+<th>Email</th>
+<th>Phone Number</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Pin</th>
+<th>Id Number</th>
+<th>Nationality</th>
+<th>Occupation</th>
+ </tr>
 
 {%for customer in customers%}
 <tr>

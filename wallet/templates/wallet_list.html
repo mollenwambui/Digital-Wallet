@@ -1,11 +1,33 @@
-<table>
-    <th>   
-   <td>Balance</td>
-   <td>Customer </td>
-   <td>Date Created</td>
-   <td>Pin</td>
+<style>
+    #mytable {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      #mytable td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      {% comment %} #staffInfo tr:nth-child(even){background-color: #C5B4E3;}
+      #staffInfo tr:{background-color: #C5B4E3;} {% endcomment %}
+      #mytable tr:hover {background-color:pink;}
+      #mytable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #AA336A;
+        color: white;
+      }
+</style>
+
+<table id="mytable">
+    <tr>   
+   <th>Balance</th>
+   <th>Customer </th>
+   <th>Date Created</th>
+   <th>Pin</th>
    
-    </th>
+    </tr>
    
    {%for wallet in wallets%}
    <tr>

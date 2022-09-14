@@ -1,17 +1,38 @@
-<table>
-    <th>   
-   <td>Loan Number</td>
-   <td>Loan Type </td>
-   <td>Amount</td>
-   <td>Date and Type</td>
-   <td>Wallet</td>
-   <td>Interest Rate</td>
-   <td>Guarantor</td>
-   <td>Pay Due Date</td>
-   <td>Id Number</td>
-   <td>Loan Balance</td>
+<style>
+    #mytable {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      #mytable td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      {% comment %} #staffInfo tr:nth-child(even){background-color: #C5B4E3;}
+      #staffInfo tr:{background-color: #C5B4E3;} {% endcomment %}
+      #mytable tr:hover {background-color:pink;}
+      #mytable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #AA336A;
+        color: white;
+      }
+</style>
+<table id="mytable">
+    <tr>   
+   <th>Loan Number</th>
+   <th>Loan Type </th>
+   <th>Amount</th>
+   <th>Date and Type</th>
+   <th>Wallet</th>
+   <th>Interest Rate</th>
+   <th>Guarantor</th>
+   <th>Pay Due Date</th>
+   <th>Id Number</th>
+   <th>Loan Balance</th>
   
-    </th>
+    </tr>
    
    {%for loan in loans%}
    <tr>

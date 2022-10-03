@@ -26,6 +26,7 @@
    <th>Receipt Date </th>
    <th>Receipt File</th>
    <th>Total Amount</th>
+   <th>Profile</th>
    
    
     </tr>
@@ -36,6 +37,8 @@
        <td> {{receipt.receipt_date}} </td>
        <td> {{receipt.receipt_file}} </td>
        <td> {{receipt.receipt_amount}} </td>
+       <td><a href="{% url 'receipt_profile' id=receipt.id%}">
+        view profile </a>
      
      
       

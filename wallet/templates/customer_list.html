@@ -33,6 +33,7 @@
 <th>Id Number</th>
 <th>Nationality</th>
 <th>Occupation</th>
+<th>Profile</th>
  </tr>
 
 {%for customer in customers%}
@@ -48,6 +49,9 @@
     <td> {{customer.id_number}} </td>
     <td> {{customer.nationality}} </td>
     <td> {{customer.occupation}} </td>
+    <td><a href=" {% url 'customer_profile' id=customer.id %}">
+      view profile </a>
+
 
 
 </tr>   

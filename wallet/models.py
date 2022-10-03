@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from locale import currency
 from django.db import models
 from django.utils import timezone
@@ -17,6 +18,7 @@ class Customer(models.Model):
     nationality=models.CharField(max_length=20,null=True)
     occupation=models.CharField(max_length=10,null=True)
     signature=models.ImageField
+    # profile_picture=models.ImageField(upload_to='profile_picture/',null=True)
 
 class Currency(models.Model):
     amount=models.IntegerField()

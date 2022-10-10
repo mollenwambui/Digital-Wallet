@@ -14,7 +14,7 @@ class  WalletForm(forms.ModelForm)  :
         model=Wallet
         fields="__all__"   
 
-class   CurrencyForm(forms.ModelForm):
+class  CurrencyForm(forms.ModelForm):
     class Meta:
         model=Currency
         fields="__all__"  

@@ -38,5 +38,6 @@ urlpatterns = [
     path("transactions/edit/<int:id>/",edit_transaction,name="edit_transaction"),
     path("receipts/<int:id>/",receipt_profile,name="receipt_profile"),
     path("receipts/edit/<int:id>/",edit_receipt,name="edit_receipt"),
+    
 ]
 

@@ -1,5 +1,6 @@
 from django.urls import path ,include
 from rest_framework import routers
+from .views import AccountDepositView,AccountTransferView
 
 
 
@@ -18,4 +19,6 @@ router.register(r"notifications",NotificationViewSet)
 
 urlpatterns=[
     path("",include(router.urls)),
+    path("deposit/", AccountDepositView.as_view(), name="deposit-view"),
+    path("transfer/", AccountTransferView.as_view(), name="transfer-view"),
 ]

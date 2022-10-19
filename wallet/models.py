@@ -38,6 +38,35 @@ class Account(models.Model) :
     balance=models.PositiveIntegerField()
     account_name=models.CharField(max_length=20,null=True)
     wallet=models.ForeignKey('Wallet',on_delete=models.CASCADE,related_name='Account_wallet')
+    def deposit(self, amount):
+       if amount <= 0:
+           message =  "Invalid amount"
+           status = 403
+       else:
+           self.account_balance += amount
+           self.save()
+           message = f"You have deposited {amount}, your new balance is {self.balance}"
+           status = 200
+       return message, status
+
+    def transfer(self, destination, amount):
+       if amount <= 0:
+           message =  "Invalid amount"
+           status = 403
+      
+       elif amount < self.account_balance:
+           message =  "Insufficient balance"
+           status = 403
+      
+       else:
+           self.account_balance -= amount
+           self.save()
+           destination.deposit(amount)
+          
+           message = f"You have transfered {amount}, your new balance is {self.account_balance}"
+           status = 200
+       return message, status
+       
 
 
 class Transaction(models.Model) :
@@ -59,7 +88,7 @@ class Card(models.Model)  :
     expiry_date=models.DateTimeField(default=timezone.now)
     card_status=models.CharField(max_length=15,null=True)
     security_code=models.IntegerField()
-    signature=models.ImageField()
+    signature=models.ImageField
     wallet=models.ForeignKey('Wallet',on_delete=models.CASCADE,related_name='Card_wallet')
     account=models.ForeignKey('Account',on_delete=models.CASCADE,related_name='Card_account')
     issuer=models.CharField(max_length=15,null=True)
@@ -105,6 +134,8 @@ class Reward(models.Model):
     GENDER_CHOICES=(("M","Male"),("F","Female"))
     gender=models.CharField(max_length=1,choices=GENDER_CHOICES,null=True)
     bonus=models.IntegerField()
+
+
 
 
 
